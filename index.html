@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <style>
+        body {
+            font-family: 'Sansita', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+            color: #000;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            border-bottom: 4px solid #9e9e9e; /* Add thicker and darker grey demarcation to header */
+        }
+
+        header img {
+            height: 58px;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            font-family: 'Istok Web', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .cta-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 35px;
+            background: #121010;
+            color: #fff;
+            border-radius: 40px;
+            font-family: 'Istok Web', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            text-align: center;
+            margin: 20px auto; /* Center the buttons */
+        }
+
+        .section {
+            padding: 100px 50px;
+            border-top: 4px solid #9e9e9e; /* Add thicker and darker grey demarcation to sections */
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            text-align: left;
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .hero-text h1 {
+            font-family: 'Sansita', sans-serif;
+            font-weight: 700;
+            font-size: 62px;
+            line-height: 70px;
+            margin: 0;
+        }
+
+        .hero-text p {
+            font-family: 'Sansita', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 25px;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-image img {
+            max-width: 100%;
+        }
+
+        .trusted-companies {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .trusted-companies img {
+            max-width: 100%;
+        }
+
+        .trusted-companies p {
+            font-family: 'Istok Web', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            height: 3px;
+            width: 25px;
+            background-color: black;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                background: white;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 200px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 10px;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 50px 20px;
+            }
+
+            .hero-text {
+                margin-bottom: 20px;
+            }
+
+            .hero-text h1 {
+                font-size: 48px;
+                line-height: 56px;
+            }
+        }
+
+        .services {
+            text-align: center;
+        }
+
+        .services h2 {
+            font-family: 'Sansita', sans-serif;
+            font-weight: 700;
+            font-size: 62px;
+            line-height: 70px;
+            margin: 20px 0;
+        }
+
+        .services .subtitle {
+            font-family: 'Sansita', sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+
+        .service-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .service-box {
+            text-align: center;
+            padding: 20px;
+            background: rgba(245, 245, 245, 0.9);
+            border-radius: 10px;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .service-box img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .service-box h3 {
+            font-family: 'Istok Web', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        .service-box p {
+            font-family: 'Sansation', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0;
+        }
+
+        .about, .whyus, .testimonials, .portfolio {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .text-image-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            width: 100%;
+        }
+
+        .about-text, .whyus-text, .testimonials-text, .portfolio-text {
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .about-text h2, .whyus-text h2, .testimonials-text h2, .portfolio-text h2 {
+            font-family: 'Sansita', sans-serif;
+            font-weight: 700;
+            font-size: 62px;
+            line-height: 70px;
+            margin: 0;
+        }
+
+        .about-text p, .whyus-text p, .testimonials-text p, .portfolio-text p {
+            font-family: 'Sansita', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 25px;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .about-image img, .whyus-image img {
+            max-width: 100%;
+        }
+
+        .testimonials-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            width: 100%;
+        }
+
+        .testimonial-box {
+            text-align: center;
+            padding: 20px;
+            background: rgba(245, 245, 245, 0.9);
+            border-radius: 10px;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .testimonial-box img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .testimonial-box h3 {
+            font-family: 'Istok Web', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        .testimonial-box p {
+            font-family: 'Sansation', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0;
+        }
+
+        .portfolio-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+            width: 100%;
+        }
+
+        .portfolio-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                background: white;
+                position: absolute;
+                top: 70px;
+                right: 50px;
+                width: 200px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 10px;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+
+            
+
+            .hero, .about, .whyus, .testimonials, .portfolio {
+                flex-direction: column;
+                text-align: center;
+                padding: 50px 20px;
+            }
+
+            .text-image-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-text, .whyus-text, .testimonials-text, .portfolio-text {
+                margin-bottom: 20px;
+                max-width: 100%;
+            }
+
+            .hero-text h1, .about-text h2, .whyus-text h2, .testimonials-text h2, .portfolio-text h2 {
+                font-size: 48px;
+                line-height: 56px;
+            }
+
+            .hero-text p, .about-text p, .whyus-text p, .testimonials-text p, .portfolio-text p {
+                font-size: 16px;
+            }
+
+            .cta-button {
+                width: 120px;
+                height: 30px;
+                font-size: 16px;
+            }
+
+            .trusted-companies p {
+                font-size: 16px;
+                text-align: center;
+            }
+
+            .services h2 {
+                font-size: 48px;
+                line-height: 56px;
+            }
+
+            .service-container, .testimonials-container, .portfolio-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service-box, .testimonial-box, .portfolio-box {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .text-image-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1, .about-text h2, .whyus-text h2, .testimonials-text h2, .portfolio-text h2 {
+                font-size: 36px;
+                line-height: 42px;
+            }
+
+            .hero-text p, .about-text p, .whyus-text p, .testimonials-text p, .portfolio-text p {
+                font-size: 16px;
+            }
+
+            .cta-button {
+                width: 120px;
+                height: 30px;
+                font-size: 16px;
+            }
+
+            .trusted-companies p {
+                font-size: 16px;
+                text-align: center;
+            }
+
+            .services h2 {
+                font-size: 36px;
+                line-height: 42px;
+            }
+
+            .service-box, .testimonial-box, .portfolio-box {
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .text-image-container {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .about-text, .whyus-text, .testimonials-text, .portfolio-text {
+                margin-bottom: 20px;
+                max-width: 100%;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .text-image-container {
+                display: flex;
+                justify-content: space-between;
+                text-align: left;
+                align-items: center;
+                max-width: 1200px;
+                margin: 0 auto; /* Center container horizontally */
+            }
+
+            .text-image-container .text-content {
+                max-width: 50%;
+            }
+
+            .text-image-container .image-content {
+                max-width: 50%;
+                text-align: center;
+            }
+        }
+
+        .pricing-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 50px;
+            flex-wrap: wrap; /* For responsive behavior */
+        }
+
+        .price-card {
+            width: 325px;
+            height: 542px;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px; /* Margin for mobile spacing */
+        }
+
+        .price-card.middle {
+            background: linear-gradient(165.26deg, rgba(246, 246, 178, 1) 45.42%, rgba(255, 217, 159, 1) 95.01%);
+        }
+
+        .price-card.grey {
+            background: #f5f5f5;
+        }
+
+        .price-card h1 {
+            font-family: 'Sansita', sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .price-card .price {
+            font-family: 'Sansita', sans-serif;
+            font-weight: 900;
+            font-size: 70px;
+            text-transform: uppercase;
+            margin: 20px 0;
+        }
+
+        .price-card .usd {
+            font-family: 'Sansita', sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .price-card .features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+            width: 100%;
+        }
+
+        .price-card .features li {
+            display: flex;
+            align-items: center;
+            font-family: 'Sansita', sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .price-card .features li img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .price-card .cta-button {
+            background: #121010;
+            color: #fff;
+            border-radius: 40px;
+            width: 100%;
+            height: 57px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Istok Web', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .price-card .book-call {
+            font-family: 'Istok Web', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #000;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .price-card {
+                width: 100%;
+                max-width: 400px;
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .price-card .cta-button {
+                width: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .price-card {
+                width: 100%;
+                max-width: 350px;
+                padding: 20px;
+                margin-bottom: 15px;
+            }
+
+            .price-card .cta-button {
+                width: 120px;
+                font-size: 16px;
+            }
+
+            .price-card .features li {
+                font-size: 18px;
+            }
+        }
+        .footer {
+            text-align: center;
+            padding: 50px 0;
+            background: linear-gradient(90deg, rgba(137, 196, 60, 0.7) 0%, rgba(233, 213, 45, 0.8) 100%);
+        }
+
+        .footer span {
+            font-family: 'Sansita', sans-serif;
+            font-size: 14px;
+        }
+
+        .footer-cta h1 {
+            font-family: 'Sansita', sans-serif;
+            font-size: 50px;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .footer-cta p {
+            font-family: 'Sansita', sans-serif;
+            font-size: 16px;
+        }
+
+        .footer .cta-button {
+            border-radius: 40px;
+            background: #121010;
+            color: #fff;
+            width: 150px;
+            height: 35px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+        }
+
+        .footer nav {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1280px;
+            margin: auto;
+            padding: 50px 0 0;
+            text-align: left;
+            flex-wrap: wrap;
+        }
+
+        .footer nav div {
+            max-width: 200px;
+            text-align: center; /* Center the text on mobile */
+            flex: 1 1 100%;
+            margin-bottom: 20px;
+        }
+
+        .footer h3 {
+            font-family: 'Sansita', sans-serif;
+            font-size: 25px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer .list {
+            list-style: none;
+            padding: 0;
+            font-family: 'Sansita', sans-serif;
+            font-size: 20px;
+        }
+
+        .footer .list li {
+            margin-bottom: 10px;
+        }
+
+        .footer .newsletter {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .newsletter input[type=email] {
+            width: 200px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Sansita', sans-serif;
+            margin-right: 10px;
+        }
+
+        .newsletter .cta-button {
+            width: auto;
+            padding: 10px 20px;
+            font-family: 'Sansita', sans-serif;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-cta h1 {
+                font-size: 36px;
+                padding: 20px;
+            }
+
+            .footer .foot{
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer .foot div {
+                max-width: 100%;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .newsletter input[type=email] {
+                width: 100%;
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+
+            .newsletter .cta-button {
+                width: auto;
+                padding: 10px 40px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-cta h1 {
+                font-size: 30px;
+                padding: 10px;
+            }
+
+            .footer .cta-button {
+                width: 120px;
+                height: 30px;
+            }
+
+            .footer span {
+                font-size: 12px;
+            }
+
+            .newsletter input[type=email] {
+                width: 90%;
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+
+            .newsletter .cta-button {
+                width: auto;
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./assets/logo.svg" alt="Logo">
+        <nav id="nav">
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">About</a>
+            <a href="#">Why Us</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Pricing</a>
+            <a href="#">FAQ</a>
+            <a href="#" class="cta-button">Get Started</a>
+        </nav>
+        <div class="hamburger" id="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="section hero">
+        <div class="hero-text">
+            <h1>Skyrocket Your Business Growth</h1>
+            <img src="./assets/element.svg" alt="Decorative Element" style="width: 51.65px; height: 50px;">
+            <p>Elevate Your Brand To New Height With Custom Web Design And Digital Marketing Strategies Designed For Maximum Impact</p>
+            <a href="#" class="cta-button">Get Started</a>
+        </div>
+        <div class="hero-image">
+            <img src="./assets/illustration.svg" alt="Rocket Illustration">
+        </div>
+    </section>
+    <!-- Trusted Companies Section -->
+    <section class="section trusted-companies">
+        <p>Trusted by Leading Companies</p>
+        <img src="./assets/companies.svg" alt="Companies Logos">
+    </section>
+    <!-- Services Section -->
+    <section class="section services">
+        <p class="subtitle">SERVICES</p>
+        <h2>We Deliver The Best Solutions</h2>
+        <div class="service-container">
+            <!-- Service Box 1 -->
+            <div class="service-box">
+                <img src="./assets/icon-3.svg" alt="No Code Development Icon">
+                <h3>NO CODE DEVELOPMENT</h3>
+                <p>We Quickly Develop Customizable, Scalar Digital Solutions With Our Efficient No-Code Approach, Reducing Costs And Increasing Adaptability.</p>
+            </div>
+            <!-- Service Box 2 -->
+            <div class="service-box">
+                <img src="./assets/icon-1.svg" alt="Branding & Strategy Icon">
+                <h3>BRANDING & STRATEGY</h3>
+                <p>We Craft A Standard Brand And Strategy That Aligns With Your Vision, Engages Your Audience, And Sets You Apart.</p>
+            </div>
+            <!-- Service Box 3 -->
+            <div class="service-box">
+                <img src="./assets/icon-2.svg" alt="Web Design Icon">
+                <h3>WEB DESIGN</h3>
+                <p>We Create Engaging, Functional Websites Tailored To Your Brand, Enhancing User Experience And Driving Conversions.</p>
+            </div>
+        </div>
+    </section>
+    <!-- About Us Section -->
+    <section class="section about">
+        <div class="text-image-container">
+            <div class="about-image image-content">
+                <img src="./assets/img-10000-1.svg" alt="About Us Image">
+            </div>
+            <div class="about-text text-content">
+                <p class="subtitle">ABOUT US</p>
+                <h2>Crafting Digital Excellence</h2>
+                <p>We Merge Creativity With Technology To Turn Ideas Into Standout Digital Experiences, Pushing Boundaries To Create Exceptional Work.</p>
+                <a href="#" class="cta-button">JOIN US</a>
+            </div>
+        </div>
+    </section>
+    <!-- Why Us Section -->
+    <section class="section whyus">
+        <div class="text-image-container">
+            <div class="whyus-text text-content">
+                <p class="subtitle">WHY US</p>
+                <h2>Your Success, Our Mission</h2>
+                <p>Our Approach Combines Creativity, Tech, And Strategy To Ensure Your Digital Ventures Achieve Measurable Success, Making Us The Ideal Partner For Growth.</p>
+                <a href="#" class="cta-button">JOIN US</a>
+            </div>
+            <div class="whyus-image image-content">
+                <img src="./assets/download-work-online-at-home-as-a-freelancer-the-workpiece-is-determined-by-time-vector-illustration-for-free-1-1.svg" alt="Why Us Image">
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="testimonials-text">
+            <p class="subtitle">TESTIMONIALS</p>
+            <h2>Read What Others Have To Say</h2>
+        </div>
+        <div class="testimonials-container">
+            <!-- Testimonial Box 1 -->
+            <div class="testimonial-box">
+                <img src="./assets/icon-1-2.svg" alt="James Howard">
+                <h3>JAMES HOWARD</h3>
+                <p>"Josiah is a true expert in branding and strategy. He took the time to really understand our company and our goals, and he created a branding and strategy plan that perfectly aligned with our needs. I would highly recommend Josiah to any business looking to take their branding and strategy to the next level."</p>
+            </div>
+            <!-- Testimonial Box 2 -->
+            <div class="testimonial-box">
+                <img src="./assets/icon-2-2.svg" alt="Williams David">
+                <h3>WILLIAMS DAVID</h3>
+                <p>"Josiah is a pleasure to work with. He has a deep understanding of web design and always delivers high-quality results. I would recommend his services to anyone who wants to create a beautiful website."</p>
+            </div>
+            <!-- Testimonial Box 3 -->
+            <div class="testimonial-box">
+                <img src="./assets/icon-3-2.svg" alt="Edward Fred">
+                <h3>EDWARD FRED</h3>
+                <p>"Josiah is not only a talented web designer, but he's also a true expert in branding and strategy. He took the time to truly understand our company and our goals, and his insights were invaluable. His creative vision was exactly what we needed to take our brand to the next level. I can't recommend him highly enough!"</p>
+            </div>
+        </div>
+    </section>
+    <!-- Portfolio Section -->
+    <section class="section portfolio">
+        <div class="portfolio-text">
+            <p class="subtitle">PORTFOLIO</p>
+            <h2>Some Of Our Previous Works</h2>
+        </div>
+        <div class="portfolio-container">
+            <div class="portfolio-box">
+                <img src="./assets/frame-8.svg" alt="Previous Work 1">
+            </div>
+            <div class="portfolio-box">
+                <img src="./assets/frame-8-2.svg" alt="Previous Work 2">
+            </div>
+            <div class="portfolio-box">
+                <img src="./assets/frame-8.svg" alt="Previous Work 3">
+            </div>
+        </section>
+
+        <section class="pricing-section">
+            <!-- Starter Card -->
+            <div class="price-card grey">
+                <h1>Starter</h1>
+                <p class="price">3200</p>
+                <p class="usd">USD</p>
+                <ul class="features">
+                    <li><img src="./assets/check-circle.svg" alt="Check"> 3-Page Website</li>
+                    <li><img src="./assets/check-circle-2.svg" alt="Check"> 3 Revisions</li>
+                    <li><img src="./assets/check-circle-3.svg" alt="Check"> Training & Support</li>
+                    <li><img src="./assets/check-circle-4.svg" alt="Check"> Figma File Included</li>
+                </ul>
+                <div class="cta-button">Order Now</div>
+                <div class="book-call">Book a call</div>
+            </div>
+            <!-- Basic Card -->
+            <div class="price-card middle">
+                <h1>Basic</h1>
+                <p class="price">5200</p>
+                <p class="usd">USD</p>
+                <ul class="features">
+                    <li><img src="./assets/check-circle.svg" alt="Check"> 5-Page Website</li>
+                    <li><img src="./assets/check-circle-2.svg" alt="Check"> 5 Revisions</li>
+                    <li><img src="./assets/check-circle-3.svg" alt="Check"> Training & Support</li>
+                    <li><img src="./assets/check-circle-4.svg" alt="Check"> Figma File Included</li>
+                </ul>
+                <div class="cta-button">Order Now</div>
+                <div class="book-call">Book a call</div>
+            </div>
+            <!-- Premium Card -->
+            <div class="price-card grey">
+                <h1>Premium</h1>
+                <p class="price">8500</p>
+                <p class="usd">USD</p>
+                <ul class="features">
+                    <li><img src="./assets/check-circle.svg" alt="Check"> 10-Page Website</li>
+                    <li><img src="./assets/check-circle-2.svg" alt="Check"> Unlimited Revisions</li>
+                    <li><img src="./assets/check-circle-3.svg" alt="Check"> Lifetime Support</li>
+                    <li><img src="./assets/check-circle-4.svg" alt="Check"> Figma File Included</li>
+                </ul>
+                <div class="cta-button">Order Now</div>
+                <div class="book-call">Book a call</div>
+            </div>
+        </section>
+        <footer class="footer">
+            <p>ARE YOU READY?</p>
+            <h1>LET'S LEVEL UP YOUR BRAND</h1>
+            <a href="#" class="cta-button">Get Started</a>
+            <img src="./assets/airdrop.svg" alt="Icon">
+            <section>
+                <div>
+                    <h3 class="foot">Navigation</h3>
+                    <ul class="list">
+                        <li>Home</li>
+                        <li>Services</li>
+                        <li>About</li>
+                        <li>About us</li>
+                        <li>Testimonials</li>
+                        <li>Portfolio</li>
+                        <li>Pricing</li>
+                        <li>FAQ</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Social Media</h3>
+                    <ul class="list">
+                        <li>Instagram</li>
+                        <li>Linkedin</li>
+                        <li>Twitter</li>
+                        <li>Tiktok</li>
+                    </ul>
+                </div>
+                <div class="newsletter">
+                    <h3>Join our newsletter</h3>
+                    <input type="email" placeholder="Email address">
+                    <a href="#" class="cta-button">Join Now</a>
+                </div>
+            </section>
+            <img src="./assets/rectangle-12.svg" alt="Decoration">
+        </footer>
+        <script>
+            const hamburger = document.getElementById('hamburger');
+            const nav = document.getElementById('nav');
+    
+            hamburger.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
+        </script>
+</body>
+   
